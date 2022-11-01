@@ -29,6 +29,33 @@ class Vector():
             return False
         return all( self.entry(i) == other.entry(i) for i in range(2) )
 
+    def __add__(self, other):
+        if type(self) != type(other):
+            raise TypeError()
+        if self.modulus != other.modulus:
+            raise ValueError("Cannot add vectors of different modulus.")
+
+        entries = [None,None]
+        for i in range(2):
+                entries[i] = self.entry(i) + other.entry(i)
+        return Vector(self._n, entries)
+
+    def __rmul__(self, other):
+        try:
+            mult = int(other)
+        except:
+            raise TypeError("Can only multiply by an integer")
+        entries = [None,None]
+        for i in range(2):
+                entries[i] = mult * self.entry(i)
+        return Vector(self._n, entries)
+
+    def __str__(self):
+        return f"[{self._val[0]}, {self._val[1]}]"
+
+    def __repr__(self):
+        return f"Vector({str(self)})"
+
 
 class Matrix():
     def __init__(self, n, value=[[0,0],[0,0]]):
@@ -104,3 +131,9 @@ class Matrix():
                 entries[i][j] = mult * self.entry(i,j)
         return Matrix(self._n, entries)
         
+    def __str__(self):
+        return "[[{}, {}], [{}, {}]]".format(self.entry(0,0), self.entry(0,1),
+            self.entry(1,0), self.entry(1,1))
+
+    def __repr__(self):
+        return "Matrix({})".format(str(self))

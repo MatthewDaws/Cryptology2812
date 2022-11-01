@@ -14,6 +14,9 @@ def test_Vector_construct():
     with pytest.raises(ValueError):
         ma2812.matrices.Vector(5, None)
 
+    assert( str(m) == "[3, 2]" )
+    assert( m.__repr__() == "Vector([3, 2])" )
+
 def test_Vector_equality():
     v1 = ma2812.matrices.Vector(5)
 
@@ -22,6 +25,17 @@ def test_Vector_equality():
 
     v2 = ma2812.matrices.Vector(5, [1,2])
     assert( v1!=v2 )
+
+def test_Vector_scalar_mult():
+    v = ma2812.matrices.Vector(5, [-2, 7])
+    vv = 3 * v
+    ve = ma2812.matrices.Vector(5, [4, 1])
+    assert( vv == ve )
+
+def test_Vector_add():
+    v = ma2812.matrices.Vector(7, [1, 3])
+    v1 = ma2812.matrices.Vector(7, [4, 3])
+    assert( v+v1 == ma2812.matrices.Vector(7, [5, 6]) )
 
 def test_Matrix_construct():
     m = ma2812.matrices.Matrix(5)
@@ -52,6 +66,10 @@ def test_Matrix_construct():
 @pytest.fixture
 def m():
     return ma2812.matrices.Matrix(7, [[1,3], [4,2]])
+
+def test_Matrix_repr(m):
+    assert( str(m) == "[[1, 3], [4, 2]]")
+    assert( m.__repr__() == "Matrix([[1, 3], [4, 2]])" )
 
 def test_Matrix_Inverses(m):
     m1 = ma2812.matrices.Matrix(5)
