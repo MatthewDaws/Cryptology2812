@@ -7,3 +7,4 @@ __version__ = "0.1.0"
 
 from .euclid import gcd, extgcd, inverse_modn
 from .primes import brute_factor, factorise, is_prime
+from .text import letter_to_code, code_to_letter
