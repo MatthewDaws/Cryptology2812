@@ -11,8 +11,8 @@ def powmodn(x, k, n):
     if k0 < 0:
         raise ValueError("Cannot compute negative powers.")
     while k0 > 0:
-        if k0 % 2 == 0:
-            k0 = k0 // 2
+        if k0 & 1 == 0:
+            k0 >>= 1
             x0 = (x0*x0) % n
         else:
             k0 -= 1
