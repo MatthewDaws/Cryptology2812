@@ -6,3 +6,4 @@ Python routines to support teaching of MA2812 Cryptology.
 __version__ = "0.1.0"
 
 from .euclid import gcd, extgcd, inverse_modn
+from .primes import brute_factor, factorise, is_prime
