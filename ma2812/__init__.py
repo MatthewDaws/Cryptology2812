@@ -9,3 +9,4 @@ from .euclid import gcd, extgcd, inverse_modn
 from .primes import brute_factor, factorise, is_prime
 from .text import letter_to_code, code_to_letter
 from .matrices import Vector, Matrix
+from .utils import powmodn
