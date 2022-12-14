@@ -8,7 +8,12 @@ Basic matrix support: 2x2 matrices modulo a number
 from .euclid import gcd, inverse_modn
 
 class Vector():
+    """A simple vector class which supports basic operations on dimension 2 column vectors, modulo `n`."""
     def __init__(self, n, value=[0,0]):
+        """Constructor.
+        
+        `n` : Modulous to perform operations with respect to
+        `value` : Optional length 2 list to initialise with; otherwise zero vector."""
         self._n = int(n)
         try:
             self._val = [None, None]
@@ -22,6 +27,8 @@ class Vector():
         return self._n
 
     def entry(self, i):
+        if i<0 or i>1:
+            raise IndexError()
         return self._val[i]
 
     def __eq__(self, other):
@@ -50,6 +57,17 @@ class Vector():
                 entries[i] = mult * self.entry(i)
         return Vector(self._n, entries)
 
+    def __iter__(self):
+        yield from self._val
+
+    def __getitem__(self, n):
+        return self.entry(n)
+
+    def __setitem__(self, n, value):
+        if n<0 or n>1:
+            raise IndexError()
+        self._val[n] = int(value) % self._n
+
     def __str__(self):
         return f"[{self._val[0]}, {self._val[1]}]"
 
@@ -73,6 +91,8 @@ class Matrix():
         return self._n
 
     def entry(self, i, j):
+        if i<0 or i>1 or j<0 or j>1:
+            raise IndexError()
         return self._val[i][j]
 
     def is_identity(self):

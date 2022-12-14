@@ -37,6 +37,25 @@ def test_Vector_add():
     v1 = ma2812.matrices.Vector(7, [4, 3])
     assert( v+v1 == ma2812.matrices.Vector(7, [5, 6]) )
 
+def test_Vector_access():
+    v = ma2812.matrices.Vector(7, [1, 3])
+    assert( v[0] == 1 )
+    assert( v[1] == 3 )
+
+    with pytest.raises(IndexError):
+        v[2]
+    with pytest.raises(IndexError):
+        v[-1]
+
+def test_Vector_set():
+    v = ma2812.matrices.Vector(7, [1, 3])
+    v[0] = 5
+    assert( v[0] == 5 )
+
+def test_Vector_to_list():
+    v = ma2812.matrices.Vector(7, [1, 3])
+    assert( list(v) == [1,3] )
+
 def test_Matrix_construct():
     m = ma2812.matrices.Matrix(5)
     assert( m.modulus == 5 )
@@ -83,6 +102,14 @@ def test_Matrix_Inverses(m):
     assert( mi.entry(0,1) == 1 )
     assert( mi.entry(1,0) == 6 )
     assert( mi.entry(1,1) == 2 )
+
+def test_Matrix_access(m):
+    assert( m.entry(0,0) == 1 )
+    assert( m.entry(1,0) == 4 )
+    with pytest.raises(IndexError):
+        m.entry(-1, 0)
+    with pytest.raises(IndexError):
+        m.entry(0, 2)
 
 def test_Matrix_Equality(m):
     mi = m.inverse()
