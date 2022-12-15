@@ -3,7 +3,7 @@ Python routines to support teaching of MA2812 Cryptology.
 """
 
 # Is this ideal to have this hard-coded both here and in the "pyproject.toml" file?
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .euclid import gcd, extgcd, inverse_modn
 from .primes import brute_factor, factorise, is_prime

@@ -6,7 +6,7 @@ Various useful routinues, including large integer powers.
 """
 
 def powmodn(x, k, n):
-    """Computes `(x**k)%n` quickly."""
+    """Computes `(x**k)%n` quickly.  The builtin `pow` command can also do this, of course..."""
     x0, k0, n, y = int(x), int(k), int(n), 1
     if k0 < 0:
         raise ValueError("Cannot compute negative powers.")
